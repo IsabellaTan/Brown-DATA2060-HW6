@@ -8275,7 +8275,7 @@ above $70\%$.)</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Solution:</strong></p>
-<p>From the program output, we can get training accuracy is 0.774 (77.4 %), testing accuracy is 0.726 (72.6 %). These results show that the Naive Bayes model fits the training data reasonably well with over 70 % accuracy.</p>
+<p>The model was trained on the preprocessed German Credit dataset, where all attributes were converted into binary indicators.Laplace smoothing was applied when estimating both the feature likelihoods and class priors to avoid zero probabilities. From the program output, we can get training accuracy is 0.774 (77.4 %), testing accuracy is 0.726 (72.6 %). These results show that the Naive Bayes model fits the training data reasonably well with over 70 % accuracy.</p>
 </div>
 </div>
 </div>
@@ -8300,8 +8300,10 @@ credit scores.</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Solution:</strong></p>
-<p>Naive Bayes makes the strong assumption that all features are conditionally independent given the class label. It assumes that once we know whether someone has good or bad credit, their features do not influence each other.</p>
-<p>In the context of credit scores, this assumption is unrealistic. Financial attributes are usually correlated — for example, people with higher income often request larger loans. However, Naive Bayes performs well in practice because it captures dominant patterns even when independence is violated.</p>
+<p>Naive Bayes relies on the idea that once the credit label is known, every feature behaves independently of the others.
+In simple terms, the model treats information like income, loan amount, and job type as if they were unrelated when predicting whether a person has good or bad credit.</p>
+<p>In real financial data, this is rarely true — people with high income usually have stronger credit histories and tend to borrow more responsibly.
+Even so, the model often performs reasonably well because it captures the main statistical tendencies rather than the exact relationships between variables.</p>
 </div>
 </div>
 </div>
@@ -8369,7 +8371,7 @@ the value of 0 or 1)</em></p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p><strong>Solution:</strong></p>
-<p>Bernoulli Naive Bayes requires every feature to be binary (0 or 1). Therefore, each original numeric or categorical column must be converted into one-hot or binned binary indicators.</p>
+<p>Bernoulli Naive Bayes requires every feature to be binary (0 or 1). Therefore, each original numeric or categorical column must be converted into one-hot or binned binary indicators. In general, categorical variables and continuous features with a small number of distinct values can be directly one-hot encoded, while continuous variables with a wide numeric range should first be grouped into several ranges (bins) before encoding.</p>
 <p>For number of credits and credit, we can use one-hot encoding to convert the value into value of 0 or 1. Because the possible values ​​are limited not widely spread, then one-hot encoding is sufficient. For example: if the variable 'credits' takes values {1, 2, 3}, we can create three new binary columns — credits_1, credits_2, and credits_3 — where only one of them equals 1 for each record, and other equal 0.</p>
 <p>For month and credit amount, we can divide each variable into different intervals, after separating, we use one-hot encoding. Because the possible values widely spread, if we use one-hot encoding directly, it might have too many columns and the model may not learn well. For example: if credit_amount ranges from 100 to 10,000, we can group it into three parts — low, medium, and high — and then create three binary columns: cred_amt_low, cred_amt_medium, and cred_amt_high. Each record will have exactly one of these equal to 1, and other equal 0.</p>
 </div>
